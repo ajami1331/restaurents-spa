@@ -1,0 +1,37 @@
+<h2>Edit Restaurant</h2>
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<mat-dialog-content [formGroup]="form" fxLayout="column" *ngIf="form">
+
+  <mat-form-field class="m-t-8 m-b-8">
+    <input matInput placeholder="Name" [formControl]="form.get('displayName')">
+    <mat-error *ngIf="form.get('displayName').hasError('required') && form.get('displayName').touched" class="error">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="m-t-8 m-b-8">
+    <input matInput placeholder="Username" [formControl]="form.get('userName')">
+    <mat-error *ngIf="form.get('userName').hasError('required') && form.get('userName').touched" class="error">
+      Username is required
+    </mat-error>
+  </mat-form-field>
+
+  <div class="m-t-8 m-b-8">
+    Roles:
+    <mat-radio-group [formControl]="form.get('roles')">
+      <mat-radio-button value="user">user</mat-radio-button>
+      <mat-radio-button value="admin">admin</mat-radio-button>
+      <mat-radio-button value="restaurant_owner">restaurant_owner</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="form.get('roles').hasError('required') && form.get('roles').touched" class="error">
+      Comment is required
+    </mat-error>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button mat-raised-button (click)="close()">Close</button>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

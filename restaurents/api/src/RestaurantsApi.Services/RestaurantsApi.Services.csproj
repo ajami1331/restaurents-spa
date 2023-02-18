@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\RestaurantsApi.IdentityServer\RestaurantsApi.IdentityServer.csproj" />
+        <ProjectReference Include="..\RestaurantsApi.Mappers\RestaurantsApi.Mappers.csproj" />
+        <ProjectReference Include="..\RestaurantsApi.Models\RestaurantsApi.Models.csproj" />
+        <ProjectReference Include="..\RestaurantsApi.Repositories\RestaurantsApi.Repositories.csproj" />
+        <ProjectReference Include="..\RestaurantsApi.Services.Abstractions\RestaurantsApi.Services.Abstractions.csproj" />
+        <PackageReference Include="MongoDB.Driver" Version="2.13.0-beta1" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

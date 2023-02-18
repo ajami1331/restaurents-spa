@@ -1,0 +1,17 @@
+<mat-toolbar fxLayoutAlign="space-between center" flex>
+  <button mat-icon-button (click)="sidebarToggle()">
+    <mat-icon *ngIf="!isSidenavOpen">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="isSidenavOpen">
+      close
+    </mat-icon>
+  </button>
+  {{appName}}
+  <button mat-button color="primary" (click)="logout()">
+    <mat-icon>
+      logout
+    </mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

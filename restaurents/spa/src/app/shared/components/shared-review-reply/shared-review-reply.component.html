@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Review {{data.restaurantName}}</h2>
+
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<mat-dialog-content [formGroup]="form" fxLayout="column">
+
+  <div class="m-t-8 m-b-8">
+    Rating: {{review.rating}} <mat-icon *ngFor="let star of getStars(review.rating)"> stars </mat-icon>
+  </div>
+
+  <div class="m-t-8 m-b-8">
+    Comment: {{review.comment}}
+  </div>
+
+  <div class="m-t-8 m-b-8">
+    Comment: {{review.dateOfVisit || "MM-dd-yyyy" }}
+  </div>
+
+  <mat-form-field class="m-t-8 m-b-8">
+    <textarea matInput placeholder="Reply" [formControl]="form.get('reply')" fxFlex></textarea>
+    <mat-error *ngIf="form.get('reply').hasError('required') && form.get('reply').touched" class="error">
+      Reply is required
+    </mat-error>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button mat-raised-button (click)="close()">Close</button>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

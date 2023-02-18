@@ -1,0 +1,80 @@
+<div class="p-l-16 p-r-16 m-t-24">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <div *ngIf="!isLoading">
+    <mat-card *ngIf="restaurant">
+      <mat-card-title fxLayoutAlign="space-between">
+        <span>{{restaurant.name}}</span>
+        <div fxLayout="row">
+          <div *ngIf="isAdmin() || isOwner()">
+            <button mat-icon-button (click)="openEditDialog()" color="primary">
+              <mat-icon>
+                edit
+              </mat-icon>
+            </button>
+          </div>
+          <div *ngIf="isAdmin()">
+            <button mat-icon-button (click)="openDeleteDialog()" color="warn">
+              <mat-icon>
+                delete
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card-title>
+      <mat-card-content fxLayout="column">
+        <span> Rating: {{restaurant.averageRating}} <mat-icon>star</mat-icon></span>
+        <span> Reviews: {{restaurant.reviewCount}} review(s).</span>
+      </mat-card-content>
+    </mat-card>
+    <div fxLayoutAlign="space-between center">
+      <p class="m-l-8">Reviews:</p>
+      <div *ngIf="!isAdmin() && !isOwner() && !reviewed()">
+        <button mat-button color="primary" (click)="openReviewDialog()">
+          Add A Review
+        </button>
+      </div>
+    </div>
+
+    <div class="m-t-16" fxLayout="row stretch" fxLayoutGap="16px" fxLayoutAlign="space-evenly">
+      <mat-card fxFlex="32" *ngIf="highestRatedReview">
+        <mat-card-title>
+          Highest Rated Review
+        </mat-card-title>
+        <mat-card-content fxLayout="column">
+          <span> Rating: {{highestRatedReview.rating}} <mat-icon>star</mat-icon></span>
+          <span> Reviewer: {{highestRatedReview.reviewerName }} </span>
+          <span> Visited: {{highestRatedReview.dateOfVisit | date: "MM-dd-yyyy" }} </span>
+          <span> Comment: {{highestRatedReview.comment}}</span>
+          <span> Reply: {{highestRatedReview.reply}}</span>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="32" *ngIf="lowestRatedReview">
+        <mat-card-title>
+          Lowest Rated Review
+        </mat-card-title>
+        <mat-card-content fxLayout="column">
+          <span> Rating: {{lowestRatedReview.rating}} <mat-icon>star</mat-icon></span>
+          <span> Reviewer: {{lowestRatedReview.reviewerName }} </span>
+          <span> Visited: {{lowestRatedReview.dateOfVisit | date: "MM-dd-yyyy" }} </span>
+          <span> Comment: {{lowestRatedReview.comment}}</span>
+          <span> Reply: {{lowestRatedReview.reply}}</span>
+        </mat-card-content>
+      </mat-card>
+      <mat-card fxFlex="32"  *ngIf="latestReview">
+        <mat-card-title>
+          Latest Review
+        </mat-card-title>
+        <mat-card-content fxLayout="column">
+          <span> Rating: {{latestReview.rating}} <mat-icon>star</mat-icon></span>
+          <span> Reviewer: {{latestReview.reviewerName }} </span>
+          <span> Visited: {{latestReview.dateOfVisit | date: "MM-dd-yyyy" }}</span>
+          <span> Comment: {{latestReview.comment}}</span>
+          <span> Reply: {{latestReview.reply}}</span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div  *ngIf="!highestRatedReview && !lowestRatedReview && !latestReview" class="not-found h-500">
+      No Reviews Found!
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div fxLayout="column" fxFlex="100">
+
+  <div fxLayout="row" class="p-r-16 p-l-16" fxLayoutAlign="space-between center">
+    <div fxLayout="column">
+      <div>
+        <span>Lowerbound: </span>
+        <mat-slider
+          thumbLabel
+          [(ngModel)]="lowerBound"
+          [displayWith]="formatLabel"
+          (ngModelChange)="lowerBoundChanged($event)"
+          tickInterval="10"
+          step="10"
+          min="0"
+          max="500"
+          aria-label="units"></mat-slider>
+      </div>
+      <div>
+        <span>UpperBound: </span>
+        <mat-slider
+          thumbLabel
+          [(ngModel)]="upperBound"
+          [displayWith]="formatLabel"
+          (ngModelChange)="upperBoundChanged($event)"
+          tickInterval="10"
+          step="10"
+          min="0"
+          max="500"
+          aria-label="units"></mat-slider>
+      </div>
+    </div>
+    <button *ngIf="isOwner()" mat-raised-button (click)="openDialog()" color="primary">
+      Create A Restaurant
+    </button>
+  </div>
+  <div *ngIf="!restaurants || !restaurants.length" class="not-found">
+    No Restaurants found
+  </div>
+  <div
+    *ngIf="restaurants.length"
+    class="restaurant-list m-t-24"
+    infinite-scroll
+    [infiniteScrollDistance]="distance"
+    [infiniteScrollThrottle]="throttle"
+    [scrollWindow]="false"
+    (scrolled)="onScroll()"
+  >
+    <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate"></mat-progress-bar>
+    <mat-card *ngFor="let restaurant of restaurants" [routerLink]="[restaurant.id]" class="restaurant-card">
+      <mat-card-title>
+        {{restaurant.name}}
+      </mat-card-title>
+      <mat-card-content fxLayout="column">
+        <span> Rating: {{restaurant.averageRating}} <mat-icon>star</mat-icon></span>
+        <span> Reviews: {{restaurant.reviewCount}} review(s).</span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

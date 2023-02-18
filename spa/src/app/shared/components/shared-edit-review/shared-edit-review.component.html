@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Review {{data.restaurantName}}</h2>
+
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<mat-dialog-content [formGroup]="form" fxLayout="column">
+
+  <div class="m-t-8 m-b-8">
+    Rating:
+    <mat-radio-group formControlName="rating">
+      <mat-radio-button value="100">1</mat-radio-button>
+      <mat-radio-button value="200">2</mat-radio-button>
+      <mat-radio-button value="300">3</mat-radio-button>
+      <mat-radio-button value="400">4</mat-radio-button>
+      <mat-radio-button value="500">5</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="form.get('rating').hasError('required') && form.get('rating').touched" class="error">
+      Comment is required
+    </mat-error>
+  </div>
+
+  <mat-form-field class="m-t-8 m-b-8">
+    <textarea matInput placeholder="Comment" formControlName="comment"></textarea>
+    <mat-error *ngIf="form.get('comment').hasError('required') && form.get('comment').touched" class="error">
+      Comment is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="m-t-8 m-b-8">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dateOfVisit" [max]="maxDateAllowed">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="end center" fxLayoutGap="8px">
+  <button mat-raised-button (click)="close()">Close</button>
+  <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

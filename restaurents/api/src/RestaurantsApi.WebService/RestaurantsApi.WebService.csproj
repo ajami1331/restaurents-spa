@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RestaurantsApi.Commons\RestaurantsApi.Commons.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Dtos\RestaurantsApi.Dtos.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.IdentityServer\RestaurantsApi.IdentityServer.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Mappers\RestaurantsApi.Mappers.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Repositories\RestaurantsApi.Repositories.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Services.Abstractions\RestaurantsApi.Services.Abstractions.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Services\RestaurantsApi.Services.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+    
+</Project>

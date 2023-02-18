@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RestaurantsApi.Commons\RestaurantsApi.Commons.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.Dtos\RestaurantsApi.Dtos.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.IdentityServer\RestaurantsApi.IdentityServer.csproj" />
+      <ProjectReference Include="..\RestaurantsApi.ViewModels\RestaurantsApi.ViewModels.csproj" />
+    </ItemGroup>
+
+</Project>
